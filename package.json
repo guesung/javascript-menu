@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "우아한테크코스 프리코스 점심 메뉴 추천 미션",
   "dependencies": {
-    "@woowacourse/mission-utils": "^1.0.6"
+    "@woowacourse/mission-utils": "^2.2.0"
   },
   "devDependencies": {
     "jest": "^29.0.3"

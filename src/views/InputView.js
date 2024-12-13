@@ -6,13 +6,13 @@ const InputValidator = require('../helpers/InputValidator.js');
 
 class InputView {
   static async readCoach() {
-    return retryUntilSuccess(async () => {
-      const rawCoach = await this.#readLineAsync(INPUT_MESSAGE.coach());
-      const coachs = InputParser.parseCoach(rawCoach);
-      InputValidator.validateCoach(coachs);
+    // return retryUntilSuccess(async () => {
+    const rawCoach = await this.#readLineAsync(INPUT_MESSAGE.coach());
+    const coachs = InputParser.parseCoach(rawCoach);
+    InputValidator.validateCoach(coachs);
 
-      return coachs;
-    });
+    return coachs;
+    // });
   }
 
   static async readFoodNotEat(coachName) {

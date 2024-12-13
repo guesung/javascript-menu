@@ -1,15 +1,14 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const App = require('../src/App');
 
-const mockQuestions = (answers) => {
-  MissionUtils.Console.readLine = jest.fn();
-  answers.reduce(
-    (acc, input) =>
-      acc.mockImplementationOnce((_, callback) => {
-        callback(input);
-      }),
-    MissionUtils.Console.readLine,
-  );
+const mockQuestions = (inputs) => {
+  MissionUtils.Console.readLineAsync = jest.fn();
+
+  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+    const input = inputs.shift();
+
+    return Promise.resolve(input);
+  });
 };
 
 const mockRandoms = (numbers) => {

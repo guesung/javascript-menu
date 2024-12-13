@@ -13,10 +13,10 @@ class CoachModel {
   }
 
   checkEatFood(food) {
-    return !this.#foodNotEat.includes(food);
+    return ![...this.#foodNotEat, ...this.foods].includes(food);
   }
 
-  setFood(food) {
+  addFood(food) {
     this.foods.push(food);
   }
 }

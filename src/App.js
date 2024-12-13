@@ -9,8 +9,6 @@ const CategoryModel = require('./models/CategoryModel.js');
 class App {
   #coachModels;
 
-  constructor() {}
-
   async play() {
     OutputView.printStart();
 
@@ -18,8 +16,8 @@ class App {
     this.#coachModels = coachs.map((coach) => new CoachModel(coach));
 
     for await (const coachModel of this.#coachModels) {
-      const foodNotEat = await InputView.readFoodNotEat(coachModel.name);
-      coachModel.setFoodNotEat(foodNotEat);
+      const foodsNotEat = await InputView.readFoodNotEat(coachModel.name);
+      coachModel.setFoodNotEat(foodsNotEat);
     }
 
     const categoryModel = new CategoryModel();

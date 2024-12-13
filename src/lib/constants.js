@@ -33,6 +33,8 @@ const MENUS = {
   양식: ['라자냐', '그라탱', '뇨끼', '끼슈', '프렌치 토스트', '바게트', '스파게티', '피자', '파니니'],
 };
 
+const MAX_DUPLICATE_CATEGORY = 2;
+
 module.exports = {
   INPUT_MESSAGE,
   OUTPUT_MESSAGE,
@@ -40,4 +42,5 @@ module.exports = {
   ERROR_MESSAGE,
   SEPARATER,
   MENUS,
+  MAX_DUPLICATE_CATEGORY,
 };

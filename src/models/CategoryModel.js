@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { MENUS } = require('../lib/constants.js');
-const { retryUntilSuccess } = require('../lib/utils.js');
+const { MENUS, MAX_DUPLICATE_CATEGORY } = require('../lib/constants.js');
+const { retryUntilSuccess, getCountArrayHas } = require('../lib/utils.js');
 
 class CategoryModel {
   categories;
@@ -15,7 +15,7 @@ class CategoryModel {
         const categoryIndex = Random.pickNumberInRange(1, 5);
         const category = Object.keys(MENUS)[categoryIndex - 1];
 
-        if (this.categories.filter((it) => it === category).length >= 2) throw new Error();
+        if (getCountArrayHas(this.categories, category) >= MAX_DUPLICATE_CATEGORY) throw new Error();
 
         this.categories.push(category);
       });

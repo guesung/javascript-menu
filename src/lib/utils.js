@@ -14,7 +14,10 @@ const retryUntilSuccess = async (callbackFunction, tryCount = 0) => {
 
 const createArrayWithNumbers = (length) => Array.from({ length }, (_, idx) => idx + 1);
 
+const getCountArrayHas = (array, value) => array.filter((item) => item === value).length;
+
 module.exports = {
   retryUntilSuccess,
   createArrayWithNumbers,
+  getCountArrayHas,
 };

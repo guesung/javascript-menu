@@ -1,28 +1,35 @@
-const { ERROR_MESSAGE } = require('../lib/constants.js');
+const { ERROR_MESSAGE, MENUS } = require('../lib/constants.js');
 
 class InputValidator {
-  static validateCoach(coach) {
-    this.#validate(coach);
+  static validateCoach(coachs) {
+    this.#validateCouchCount(coachs);
+    this.#validateCoucnLength(coachs);
+  }
+
+  static #validateCouchCount(coachs) {
+    if (coachs.length >= 2 && coachs.length <= 5) return;
+    this.#throwError(ERROR_MESSAGE.coach.count);
+  }
+
+  static #validateCoucnLength(coachs) {
+    if (coachs.every((coach) => coach.length >= 2 && coach.length <= 4)) return;
+    this.#throwError(ERROR_MESSAGE.coach.length);
   }
 
   static validateFoodNotEat(foodNotEat) {
-    this.#validate(foodNotEat);
+    this.#validateFoodNotEatCount(foodNotEat);
+    this.#validateFoodNotExist(foodNotEat);
   }
 
-  static validateExample3(example3) {
-    this.#validate(example3);
+  static #validateFoodNotEatCount(foodNotEat) {
+    if (foodNotEat.length <= 2) return;
+    this.#throwError(ERROR_MESSAGE.foodNotEat.count);
   }
 
-  static validateExample4(example4) {
-    this.#validate(example4);
-  }
+  static #validateFoodNotExist(foodNotEat) {
+    if (foodNotEat.every((food) => Object.values(MENUS).flat().includes(food))) return;
 
-  static validateExample5(example5) {
-    this.#validate(example5);
-  }
-
-  static #validate(example) {
-    if (!example) this.#throwError(ERROR_MESSAGE.notExample);
+    this.#throwError(ERROR_MESSAGE.foodNotEat.exist);
   }
 
   static #throwError(message) {

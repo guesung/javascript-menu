@@ -1,9 +1,6 @@
 const INPUT_MESSAGE = {
   coach: () => `코치의 이름을 입력해 주세요. (, 로 구분)\n`,
   foodNotEat: (coachName) => `${coachName}(이)가 못 먹는 메뉴를 입력해 주세요.\n`,
-  example3: () => `\n`,
-  example4: () => `\n`,
-  example5: () => `\n`,
 };
 
 const OUTPUT_MESSAGE = {
@@ -15,8 +12,13 @@ const OUTPUT_MESSAGE = {
 
 const ERROR_MESSAGE_DEFAULT = '[ERROR]';
 const ERROR_MESSAGE = {
-  example: {
-    default: `${ERROR_MESSAGE_DEFAULT} 예시를 입력해주세요!`,
+  coach: {
+    count: `${ERROR_MESSAGE_DEFAULT} 코치는 최소 2명 이상 5명 이하로 입력해야 합니다.`,
+    length: `${ERROR_MESSAGE_DEFAULT} 코치 이름은 2글자 이상 4글자 이하여야 합니다.`,
+  },
+  foodNotEat: {
+    count: `${ERROR_MESSAGE_DEFAULT} 못 먹는 메뉴는 2개 이하여야 합니다.`,
+    exist: `${ERROR_MESSAGE_DEFAULT} 메뉴에 있는 메뉴여야 합니다.`,
   },
 };
 

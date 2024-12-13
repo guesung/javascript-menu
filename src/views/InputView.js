@@ -15,9 +15,9 @@ class InputView {
     });
   }
 
-  static async readFoodNotEat() {
+  static async readFoodNotEat(coachName) {
     return retryUntilSuccess(async () => {
-      const rawFoodNotEat = await this.#readLineAsync(INPUT_MESSAGE.foodNotEat());
+      const rawFoodNotEat = await this.#readLineAsync(INPUT_MESSAGE.foodNotEat(coachName));
       const foodNotEat = InputParser.parseFoodNotEat(rawFoodNotEat);
       InputValidator.validateFoodNotEat(foodNotEat);
 

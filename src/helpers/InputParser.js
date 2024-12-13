@@ -7,7 +7,7 @@ class InputParser {
   }
 
   static parseFoodNotEat(rawFoodNotEat) {
-    const foodNotEat = rawFoodNotEat;
+    const foodNotEat = rawFoodNotEat.split(SEPARATER);
     return foodNotEat;
   }
 

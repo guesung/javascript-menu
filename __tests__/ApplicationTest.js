@@ -3,9 +3,13 @@ const App = require('../src/App');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
-  answers.reduce((acc, input) => acc.mockImplementationOnce((_, callback) => {
-      callback(input);
-    }), MissionUtils.Console.readLine);
+  answers.reduce(
+    (acc, input) =>
+      acc.mockImplementationOnce((_, callback) => {
+        callback(input);
+      }),
+    MissionUtils.Console.readLine,
+  );
 };
 
 const mockRandoms = (numbers) => {
@@ -16,7 +20,11 @@ const mockRandoms = (numbers) => {
 const mockShuffles = (rows) => {
   MissionUtils.Random.shuffle = jest.fn();
 
-  rows.reduce((acc, [firstNumber, numbers]) => acc.mockReturnValueOnce([firstNumber, ...numbers.filter((number) => number !== firstNumber)]), MissionUtils.Random.shuffle);
+  rows.reduce(
+    (acc, [firstNumber, numbers]) =>
+      acc.mockReturnValueOnce([firstNumber, ...numbers.filter((number) => number !== firstNumber)]),
+    MissionUtils.Random.shuffle,
+  );
 };
 
 const getLogSpy = () => {
@@ -38,7 +46,7 @@ describe('점심 메뉴 테스트', () => {
   });
 
   describe('전체 기능 테스트', () => {
-    test('카테고리 메뉴 중복 없는 추천', () => {
+    test('카테고리 메뉴 중복 없는 추천', async () => {
       const logSpy = getLogSpy();
 
       mockRandoms([2, 5, 1, 3, 4]);
@@ -62,7 +70,7 @@ describe('점심 메뉴 테스트', () => {
       ]);
 
       const app = new App();
-      app.play();
+      await app.play();
       const log = getOutput(logSpy);
 
       expect(log.replace(/\n/g, '')).toEqual(

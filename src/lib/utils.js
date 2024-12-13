@@ -1,6 +1,6 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
+const { MissionUtils } = require('@woowacourse/mission-utils');
 
-export const retryUntilSuccess = async (callbackFunction, tryCount = 0) => {
+const retryUntilSuccess = async (callbackFunction, tryCount = 0) => {
   try {
     return await callbackFunction();
   } catch (error) {
@@ -12,5 +12,11 @@ export const retryUntilSuccess = async (callbackFunction, tryCount = 0) => {
   }
 };
 
-export const checkUnique = (array) => array.length === new Set(array).size;
-export const checkDateBetween = (date, startDate, endDate) => date >= startDate && date <= endDate;
+const checkUnique = (array) => array.length === new Set(array).size;
+const checkDateBetween = (date, startDate, endDate) => date >= startDate && date <= endDate;
+
+module.exports = {
+  retryUntilSuccess,
+  checkUnique,
+  checkDateBetween,
+};

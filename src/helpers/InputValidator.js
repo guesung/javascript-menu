@@ -1,12 +1,12 @@
-import { ERROR_MESSAGE } from '../lib/constants.js';
+const { ERROR_MESSAGE } = require('../lib/constants.js');
 
-export default class InputValidator {
-  static validateExample1(example1) {
-    this.#validate(example1);
+class InputValidator {
+  static validateCoach(coach) {
+    this.#validate(coach);
   }
 
-  static validateExample2(example2) {
-    this.#validate(example2);
+  static validateFoodNotEat(foodNotEat) {
+    this.#validate(foodNotEat);
   }
 
   static validateExample3(example3) {
@@ -29,3 +29,5 @@ export default class InputValidator {
     throw new Error(message);
   }
 }
+
+module.exports = InputValidator;

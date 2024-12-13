@@ -1,12 +1,14 @@
-export default class InputParser {
-  static parseExample1(rawExample1) {
-    const example1 = rawExample1;
-    return example1;
+const { SEPARATER } = require('../lib/constants.js');
+
+class InputParser {
+  static parseCoach(rawCoach) {
+    const coach = rawCoach.split(SEPARATER);
+    return coach;
   }
 
-  static parseExample2(rawExample2) {
-    const example2 = rawExample2;
-    return example2;
+  static parseFoodNotEat(rawFoodNotEat) {
+    const foodNotEat = rawFoodNotEat;
+    return foodNotEat;
   }
 
   static parseExample3(rawExample3) {
@@ -24,3 +26,5 @@ export default class InputParser {
     return example5;
   }
 }
+
+module.exports = InputParser;

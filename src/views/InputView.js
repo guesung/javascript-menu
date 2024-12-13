@@ -1,27 +1,27 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
+const { MissionUtils } = require('@woowacourse/mission-utils');
+const { INPUT_MESSAGE } = require('../lib/constants.js');
+const { retryUntilSuccess } = require('../lib/utils.js');
+const InputParser = require('../helpers/InputParser.js');
+const InputValidator = require('../helpers/InputValidator.js');
 
-import { InputParser, InputValidator } from '../helpers/index.js';
-import { INPUT_MESSAGE } from '../lib/constants.js';
-import { retryUntilSuccess } from '../lib/utils.js';
-
-export default class InputView {
-  static async readExample1() {
+class InputView {
+  static async readCoach() {
     return retryUntilSuccess(async () => {
-      const rawExample1 = await this.#readLineAsync(INPUT_MESSAGE.example1());
-      const example1 = InputParser.parseExample1(rawExample1);
-      InputValidator.validateExample1(example1);
+      const rawCoach = await this.#readLineAsync(INPUT_MESSAGE.coach());
+      const coachs = InputParser.parseCoach(rawCoach);
+      InputValidator.validateCoach(coachs);
 
-      return example1;
+      return coachs;
     });
   }
 
-  static async readExample2() {
+  static async readFoodNotEat() {
     return retryUntilSuccess(async () => {
-      const rawExample2 = await this.#readLineAsync(INPUT_MESSAGE.example2());
-      const example2 = InputParser.parseExample2(rawExample2);
-      InputValidator.validateExample2(example2);
+      const rawFoodNotEat = await this.#readLineAsync(INPUT_MESSAGE.foodNotEat());
+      const foodNotEat = InputParser.parseFoodNotEat(rawFoodNotEat);
+      InputValidator.validateFoodNotEat(foodNotEat);
 
-      return example2;
+      return foodNotEat;
     });
   }
 
@@ -59,3 +59,5 @@ export default class InputView {
     return MissionUtils.Console.readLineAsync(message);
   }
 }
+
+module.exports = InputView;

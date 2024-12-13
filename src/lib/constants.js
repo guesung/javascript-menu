@@ -15,6 +15,7 @@ const ERROR_MESSAGE = {
   coach: {
     count: `${ERROR_MESSAGE_DEFAULT} 코치는 최소 2명 이상 5명 이하로 입력해야 합니다.`,
     length: `${ERROR_MESSAGE_DEFAULT} 코치 이름은 2글자 이상 4글자 이하여야 합니다.`,
+    unique: `${ERROR_MESSAGE_DEFAULT} 코치 이름은 중복되면 안됩니다.`,
   },
   foodNotEat: {
     count: `${ERROR_MESSAGE_DEFAULT} 못 먹는 메뉴는 2개 이하여야 합니다.`,

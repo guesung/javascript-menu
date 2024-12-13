@@ -4,6 +4,7 @@ class InputValidator {
   static validateCoach(coachs) {
     this.#validateCouchCount(coachs);
     this.#validateCoucnLength(coachs);
+    this.#validateCoucnUnique(coachs);
   }
 
   static #validateCouchCount(coachs) {
@@ -14,6 +15,11 @@ class InputValidator {
   static #validateCoucnLength(coachs) {
     if (coachs.every((coach) => coach.length >= 2 && coach.length <= 4)) return;
     this.#throwError(ERROR_MESSAGE.coach.length);
+  }
+
+  static #validateCoucnUnique(coachs) {
+    if (coachs.length === new Set(coachs).size) return;
+    this.#throwError(ERROR_MESSAGE.coach.unique);
   }
 
   static validateFoodNotEat(foodNotEat) {

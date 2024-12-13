@@ -1,6 +1,6 @@
 class CoachModel {
   name;
-  foodNotEat;
+  #foodNotEat;
   foods;
 
   constructor(name) {
@@ -9,11 +9,11 @@ class CoachModel {
   }
 
   setFoodNotEat(foodNotEat) {
-    this.foodNotEat = foodNotEat;
+    this.#foodNotEat = foodNotEat;
   }
 
   checkEatFood(food) {
-    return !this.foodNotEat.includes(food);
+    return !this.#foodNotEat.includes(food);
   }
 
   setFood(food) {

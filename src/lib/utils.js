@@ -12,11 +12,9 @@ const retryUntilSuccess = async (callbackFunction, tryCount = 0) => {
   }
 };
 
-const checkUnique = (array) => array.length === new Set(array).size;
-const checkDateBetween = (date, startDate, endDate) => date >= startDate && date <= endDate;
+const createArrayWithNumbers = (length) => Array.from({ length }, (_, idx) => idx + 1);
 
 module.exports = {
   retryUntilSuccess,
-  checkUnique,
-  checkDateBetween,
+  createArrayWithNumbers,
 };

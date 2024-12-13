@@ -1,19 +1,23 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { MENUS } = require('./lib/constants.js');
-const { retryUntilSuccess } = require('./lib/utils.js');
+const { MENUS, ERROR_MESSAGE } = require('./lib/constants.js');
+const { retryUntilSuccess, createArrayWithNumbers } = require('./lib/utils.js');
 const InputView = require('./views/InputView.js');
 const CoachModel = require('./models/CoachModel.js');
 const OutputView = require('./views/OutputView.js');
 const CategoryModel = require('./models/CategoryModel.js');
 
 class App {
+  #coachModels;
+
+  constructor() {}
+
   async play() {
     OutputView.printStart();
 
     const coachs = await InputView.readCoach();
-    const coachModels = coachs.map((coach) => new CoachModel(coach));
+    this.#coachModels = coachs.map((coach) => new CoachModel(coach));
 
-    for await (const coachModel of coachModels) {
+    for await (const coachModel of this.#coachModels) {
       const foodNotEat = await InputView.readFoodNotEat(coachModel.name);
       coachModel.setFoodNotEat(foodNotEat);
     }
@@ -21,13 +25,13 @@ class App {
     const categoryModel = new CategoryModel();
     categoryModel.makeCategory();
 
-    for await (const coachModel of coachModels) {
+    for await (const coachModel of this.#coachModels) {
       for (let day = 0; day < 5; day += 1) {
         const category = categoryModel.categories[day];
         const menus = MENUS[category];
 
         retryUntilSuccess(() => {
-          const menuIndex = Random.shuffle(Array.from({ length: menus.length }, (_, idx) => idx + 1))[0];
+          const menuIndex = Random.shuffle(createArrayWithNumbers(menus.length))[0];
           const menu = menus[menuIndex - 1];
           const canEatFood = coachModel.checkEatFood(menu);
 
@@ -38,7 +42,7 @@ class App {
       }
     }
 
-    OutputView.printResult(coachModels, categoryModel.categories);
+    OutputView.printResult(this.#coachModels, categoryModel.categories);
   }
 }
 
